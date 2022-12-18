@@ -1,0 +1,19 @@
+#fungsi relay yang berfungsi sebagai 
+saklar untuk menyalakan kipas 
+=================== 
+def relay(aksi):
+ #print('relay jalan')
+ global relay_pin
+ GPIO.setmode(GPIO.BOARD) # 
+Numbers GPIOs by physical location
+ GPIO.setwarnings(False)
+ GPIO.setup(relay_pin, GPIO.OUT)
+# Set pins' mode is output
+ GPIO.output(relay_pin, GPIO.HIGH)
+ if aksi ==1:
+ GPIO.output(relay_pin, GPIO.HIGH) 
+# high berarti relay mati 
+=================
+ else:
+ GPIO.output(relay_pin, GPIO.LOW) 
+#low relay menyala===================
