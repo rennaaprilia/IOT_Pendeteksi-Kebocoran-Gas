@@ -1,25 +1,24 @@
 def peringatan():
- global status
- #menghitung jumlah data yg ada di 
-database=========================
- cur_user.execute("SELECT COUNT(id) FROM 
-user")
- for row in cur_user.fetchall():
- data = row[0]
- #membuat perulangan sesuai jumlah data 
-diatas============================
- for x in range(0, int(data)):
- x = x + 1
-#men-select data di database sesuai id 
-============================
- cur_user.execute("SELECT user_id from 
-user WHERE id = '%s'" %x)
-print("SELECT user_id from user WHERE id = 
-'%s'" %x)
- for chat in cur_user.fetchall():
- chat_id = chat[0]
- #mengirim pesan peringatan ke 
-user============================
-bot.sendMessage(chat_id, 
-text='Bahaya, Gas Bocor! status= %s persen' 
-%status)
+  global status
+  
+  #menghitung jumlah data yg ada di database=========================
+  cur_user.execute("SELECT COUNT(id) FROM user")
+  
+  for row in cur_user.fetchall():
+    data = row[0]
+  
+  #membuat perulangan sesuai jumlah data diatas============================
+    
+  for x in range(0, int(data)):
+    x = x + 1
+    
+    #men-select data di database sesuai id ============================
+    cur_user.execute("SELECT user_id from user WHERE id = '%s'" %x)
+    print("SELECT user_id from user WHERE id = '%s'" %x)
+    
+    for chat in cur_user.fetchall():
+      chat_id = chat[0]
+    
+    #mengirim pesan peringatan ke user============================
+    
+    bot.sendMessage(chat_id, text='Bahaya, Gas Bocor! status= %s persen' %status)

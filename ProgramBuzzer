@@ -1,18 +1,15 @@
 def buzz(pitch, duration):
- global buzzer_pin
- #jika fungsi ini dipanggil maka akan memanggil 
-fungsi relay juga ======================
- relay(0)
- GPIO.setmode(GPIO.BOARD) # Numbers 
-GPIOs by physical location
- GPIO.setwarnings(False)
- GPIO.setup(buzzer_pin, GPIO.OUT) # 
-Set pins' mode is output
- GPIO.output(buzzer_pin, GPIO.HIGH) 
- period = 1.0 / pitch
- delay = period / 2
- cycles = int(duration * pitch)
- for i in range(cycles):
- GPIO.output(buzzer_pin, True)
- time.sleep(delay)
- GPIO.output(buzzer_pin, False)
+  global buzzer_pin
+  #jika fungsi ini dipanggil maka akan memanggil fungsi relay juga ======================
+  relay(0)
+  GPIO.setmode(GPIO.BOARD) # Numbers GPIOs by physical location
+  GPIO.setwarnings(False)
+  GPIO.setup(buzzer_pin, GPIO.OUT) # Set pins' mode is output
+  GPIO.output(buzzer_pin, GPIO.HIGH) 
+  period = 1.0 / pitch
+  delay = period / 2
+  cycles = int(duration * pitch)
+  for i in range(cycles):
+    GPIO.output(buzzer_pin, True)
+    time.sleep(delay)
+    GPIO.output(buzzer_pin, False)

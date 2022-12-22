@@ -1,68 +1,79 @@
 # fungsi untuk sensor gas
+
 def gas():
- global status
- #ADS1015 = 0x00 # 12-bit ADC 
- ADS1115 = 0x01 # 16-bit ADC 
- # Select the gain 
- # gain = 6144 # +/- 6.144V 
- gain = 1 #4096 # +/- 4.096V 
- # gain = 2048 # +/- 2.048V 
- # gain = 1024 # +/- 1.024V 
- # gain = 512 # +/- 0.512V 
- # gain = 256 # +/- 0.256V 
- # Select the sample rate 
- # sps = 8 # 8 samples per second 
- # sps = 16 # 16 samples per second 
- # sps = 32 # 32 samples per second 
- # sps = 64 # 64 samples per second 
- # sps = 128 # 128 samples per second 
- sps = 250 # 250 samples per second 
- # sps = 475 # 475 samples per second 
- # sps = 860 # 860 samples per second 
- # Initialise the ADCs using the default mode 
-(use appropriate I2C address) 
- adc = ADS1x15.ADS1115(address=0x48, busnum=1)
- #adc2 = 
-Adafruit_ADS1x15.ADS1015(address=0x48, busnum=1)
- #adc3 = 
-Adafruit_ADS1x15.ADS1015(address=0x49, busnum=1)
-status=0
- while (True):
- #status=[]
- # MQ-2 
- volts = float(adc.read_adc(0, gain, sps) 
-/ 1000)
- #print ("MQ-2 %.6fv" % (volts) )
- min = 3
- max = 30
+  global status
+  #ADS1015 = 0x00 # 12-bit ADC 
+  
+  ADS1115 = 0x01 # 16-bit ADC 
  
- value = ((volts/(max-min))*100)
- value1 = int(value)
- if value1 <= 11:
- value1 = 0
- elif value1 =45:
- value1 = 50
- elif value1 >100:
- value1=100
- else:
- value1=value1
+  # Select the gain 
+  # gain = 6144 # +/- 6.144V 
+  
+  gain = 1 #4096 # +/- 4.096V 
+  
+  # gain = 2048 # +/- 2.048V 
+  # gain = 1024 # +/- 1.024V 
+  # gain = 512 # +/- 0.512V 
+  # gain = 256 # +/- 0.256V 
+  # Select the sample rate 
+  # sps = 8 # 8 samples per second 
+  # sps = 16 # 16 samples per second 
+  # sps = 32 # 32 samples per second 
+  # sps = 64 # 64 samples per second 
+  # sps = 128 # 128 samples per second 
  
- status=value1
- print("%s persen" %status)
- #jika nilai sensor lebih dari atau sama 
-dengan 25 akan menyalakan buzzer
-# dan mengirim peringatan 
-======================================
- if status >= 25:
- print('bahaya')
- buzz(10,0.5)
- time.sleep(0.25)
- buzz(20,0.5)
- time.sleep(0.25)
- #peringatan()
+  sps = 250 # 250 samples per second 
  
- #jika aman maka menjalankan else 
-========================= 
- else :
- print('aman')
- destroy()
+  # sps = 475 # 475 samples per second 
+  # sps = 860 # 860 samples per second 
+  # Initialise the ADCs using the default mode (use appropriate I2C address) 
+  
+  adc = ADS1x15.ADS1115(address=0x48, busnum=1)
+ 
+  #adc2 = Adafruit_ADS1x15.ADS1015(address=0x48, busnum=1)
+  #adc3 = Adafruit_ADS1x15.ADS1015(address=0x49, busnum=1)
+  
+  status=0
+  
+  while (True):
+  
+    #status=[]
+    # MQ-2
+
+    volts = float(adc.read_adc(0, gain, sps) / 1000)
+
+    #print ("MQ-2 %.6fv" % (volts) )
+
+    min = 3
+    max = 30
+
+    value = ((volts/(max-min))*100)
+    value1 = int(value)
+    if value1 <= 11:
+      value1 = 0
+    elif value1 =45:
+      value1 = 50
+    elif value1 >100:
+      value1=100
+    else:
+      value1=value1
+
+    status=value1
+    print("%s persen" %status)
+
+    #jika nilai sensor lebih dari atau sama dengan 25 akan menyalakan buzzer
+    # dan mengirim peringatan ======================================
+
+    if status >= 25:
+      print('bahaya')
+      buzz(10,0.5)
+      time.sleep(0.25)
+      buzz(20,0.5)
+      time.sleep(0.25)
+
+   #peringatan()
+
+   #jika aman maka menjalankan else ========================= 
+   else :
+     print('aman')
+     destroy()
